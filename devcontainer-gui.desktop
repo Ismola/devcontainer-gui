@@ -2,7 +2,7 @@
 Type=Application
 Name=Dev Containers GUI authorization
 Comment=Authorize VS Code's local X11 bridge for GUI applications
-Exec=/bin/sh -lc ~/.local/bin/enable-devcontainer-gui
+Exec=/bin/sh -lc "~/.local/bin/enable-devcontainer-gui"
 Terminal=false
 NoDisplay=true
 X-KDE-autostart-after=panel
