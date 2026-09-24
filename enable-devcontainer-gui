@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Allow only the current local desktop user to use the X11/XWayland display.
+# This deliberately avoids the insecure `xhost +` command.
+attempt=0
+current_user=$(id -un) || exit 1
+xhost_command=$(command -v xhost) || exit 1
+
+while [ "$attempt" -lt 20 ]; do
+    if "$xhost_command" "+SI:localuser:$current_user" >/dev/null 2>&1; then
+        exit 0
+    fi
+    attempt=$((attempt + 1))
+    sleep 1
+done
+
+exit 1
